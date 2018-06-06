@@ -1,0 +1,247 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <style>
+        .tab-pane {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">AWS Cognito</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Cognito User Credentials</h1>
+        <p>This is a simple helper to acquire Cognito User credentials for testing</p>
+    </div>
+</div>
+
+<div class="container" style="word-break: break-all;">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#authenticated" aria-controls="authenticated" role="tab"
+                                                          data-toggle="tab">Authenticated</a></li>
+                <li role="presentation"><a href="#unauthenticated" aria-controls="unauthenticated" role="tab"
+                                           data-toggle="tab">UnAuthenticated</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="authenticated">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <form>
+                                <div class="form-group">
+                                    <label for="upid">User Pool ID</label>
+                                    <input type="text" class="form-control" id="upid" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ipid">Identity Pool ID</label>
+                                    <input type="text" class="form-control" id="ipid" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cid">Client ID</label>
+                                    <input type="text" class="form-control" id="cid" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user">User</label>
+                                    <input type="text" class="form-control" id="user" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password">New Password</label>
+                                    <input type="password" class="form-control" id="new_password" value="">
+                                </div>
+                                <button type="submit" class="btn btn-default generate-auth">Generate</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <hr>
+                                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-identity-id" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Identity ID
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-access-key" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Access Key
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-secret-key" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Secret Key
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-session-token" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Session Token
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-access-token" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Access Token
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="admin-btn-id-token" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">ID Token
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col-sm-12 hide">
+                                    <hr>
+                                    <h2>Idenity ID:</h2>
+                                    <p class="identity-id"></p>
+                                    <h2>Access Key:</h2>
+                                    <p class="access-key"></p>
+                                    <h2>Secret Key:</h2>
+                                    <p class="secret-key"></p>
+                                    <h2>Session Token:</h2>
+                                    <p class="session-token"></p>
+                                    <h2>Access Token:</h2>
+                                    <p class="access-token"></p>
+                                    <h2>ID Token:</h2>
+                                    <p class="id-token"></p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="unauthenticated">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <form>
+                                <div class="form-group">
+                                    <label for="unauth-ipid">Identity Pool ID</label>
+                                    <input type="text" class="form-control" id="unauth-ipid"
+                                           value="">
+
+                                </div>
+                                <button type="submit" class="btn btn-default generate-unauth">Generate</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <hr>
+                                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                        <div class="btn-group" role="group">
+                                            <button id="guest-btn-identity-id" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Identity ID
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="guest-btn-access-key" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Access Key
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="guest-btn-secret-key" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Secret Key
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button id="guest-btn-session-token" type="button"
+                                                    class="btn btn-default btn-cpy"
+                                                    disabled="disabled">Session Token
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col-sm-12">
+                                    <hr>
+                                    <h2>Idenity ID:</h2>
+                                    <p class="unauth-identity-id"></p>
+                                    <h2>Access Key:</h2>
+                                    <p class="unauth-access-key"></p>
+                                    <h2>Secret Key:</h2>
+                                    <p class="unauth-secret-key"></p>
+                                    <h2>Session Token:</h2>
+                                    <p class="unauth-session-token"></p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Mark Cinco 2019</p>
+    </footer>
+</div> <!-- /container -->
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/clipboard/dist/clipboard.min.js"></script>
+<script src="node_modules/aws-sdk/dist/aws-sdk.min.js"></script>
+<script src="node_modules/amazon-cognito-identity-js/dist/aws-cognito-sdk.min.js"></script>
+<script src="node_modules/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+<script src="node_modules/crypto-js/crypto-js.js"></script>
+<script src="node_modules/moment/min/moment.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
